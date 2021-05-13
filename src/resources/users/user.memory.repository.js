@@ -1,6 +1,9 @@
-const getAll = async () => {
-  // TODO: mock implementation. should be replaced during task development
-  return [];
-};
+const { getAllEntities, getEntity } = require('../../utils/memoryDB');
 
-module.exports = { getAll };
+const TABLE_NAME = 'Users';
+
+const getAll = async () => getAllEntities(TABLE_NAME);
+
+const get = async (id) => getEntity(TABLE_NAME, id);
+
+module.exports = { getAll, get };
