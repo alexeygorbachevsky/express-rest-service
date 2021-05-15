@@ -1,4 +1,5 @@
 const { ErrorDefiner } = require('./errors');
+const Errors = require('./constants');
 
 const asyncWrap = (fn) => (req, res, next, ...args) => {
   const fnReturn = fn(req, res, next, ...args);
@@ -13,7 +14,7 @@ const appErrorHandler = (err, req, res, next) => {
       break;
     }
     default:{
-      res.sendStatus(500);
+      res.sendStatus(Errors.SERVER_ERROR);
       res.render('Error:', { error: err });
     }
 

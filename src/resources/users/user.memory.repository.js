@@ -1,4 +1,10 @@
-const { getAllEntities, getEntity, saveEntity, removeEntity, updateEntity } = require('../../helpers/fakeDB');
+const {
+  getAllEntities,
+  getEntity,
+  saveEntity,
+  removeEntity,
+  updateEntity,
+} = require('../../db/fakeDB');
 const { ErrorDefiner } = require('../../errors/errors');
 const Errors = require('../../errors/constants');
 
@@ -25,7 +31,10 @@ const post = async (user) => {
 const remove = async (id) => {
   const user = await removeEntity(TABLE_NAME, id);
   if (!user) {
-    throw new ErrorDefiner(`User with ${id} id is not found for removing`, Errors.NOT_FOUND);
+    throw new ErrorDefiner(
+      `User with ${id} id is not found for removing`,
+      Errors.NOT_FOUND
+    );
   }
   return user;
 };

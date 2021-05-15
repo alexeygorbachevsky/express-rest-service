@@ -4,7 +4,7 @@ const {
   saveEntity,
   removeEntity,
   updateEntity,
-} = require('../../helpers/fakeDB');
+} = require('../../db/fakeDB');
 const { ErrorDefiner } = require('../../errors/errors');
 const Errors = require('../../errors/constants');
 
