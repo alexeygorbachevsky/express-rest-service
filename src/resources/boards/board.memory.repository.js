@@ -23,7 +23,7 @@ const get = async (id) => {
   return board;
 };
 
-const save = async (board) => saveEntity(TABLE_NAME, board);
+const post = async (board) => saveEntity(TABLE_NAME, board);
 
 const remove = async (id) => {
   const board = await removeEntity(TABLE_NAME, id);
@@ -36,16 +36,15 @@ const remove = async (id) => {
   return board;
 };
 
-const update = async (id, board) => {
+const put = async (id, board) => {
   const entity = await updateEntity(TABLE_NAME, id, board);
   if (!entity) {
     throw new ErrorDefiner(
-      `Couldn't find a board with id: ${id}`,
+      `Board with ${id} id is not found for editing`,
       Errors.NOT_FOUND
     );
   }
-
   return entity;
 };
 
-module.exports = { getAll, get, remove, save, update };
+module.exports = { getAll, get, remove, post, put };

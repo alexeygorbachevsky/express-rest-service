@@ -22,7 +22,7 @@ const db = {
         break;
       }
     }
-  },
+  }
 };
 
 const getAllEntities = (tableName) => db[tableName];
@@ -45,17 +45,15 @@ const removeEntity = (tableName, entityId) => {
 };
 
 
-const updateEntity = (tableName, updatedUserId, newData) => {
-  const updatedEntityId = db[tableName].findIndex(
-    ({ id }) => id === updatedUserId
-  );
-  if (updatedEntityId !== -1) {
-    db[tableName][updatedEntityId] = {
-      ...getEntity(tableName, updatedUserId),
-      ...newData,
+const updateEntity = (tableName, updatingEntityId, newData) => {
+  const entityId = db[tableName].findIndex(({ id }) => id === updatingEntityId);
+  if (entityId !== -1) {
+    db[tableName][entityId] = {
+      ...db[tableName][entityId],
+      ...newData
     };
   }
-  return getEntity(tableName, updatedUserId);
+  return getEntity(tableName, updatingEntityId);
 };
 
 // Init db filling
@@ -78,5 +76,5 @@ module.exports = {
   getEntity,
   saveEntity,
   removeEntity,
-  updateEntity,
+  updateEntity
 };

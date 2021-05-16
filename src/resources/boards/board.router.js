@@ -33,7 +33,7 @@ router.route('/:id').delete(
 
 router.route('/:id').put(
   asyncWrap(async (req, res) => {
-    const board = await boardService.put(Board.fromRequest(req.body));
+    const board = await boardService.put(req.params.id, req.body);
     res.status(200).send(board);
   })
 );

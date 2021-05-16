@@ -4,9 +4,9 @@ const getAll = () => boardsRepo.getAll();
 
 const get = id => boardsRepo.get(id);
 
-const post = board => boardsRepo.save(board);
+const post = board => boardsRepo.post(board);
 
-const put = board => boardsRepo.update(board.id, board);
+const put = (id, board) => boardsRepo.put(id, board);
 
 const remove = id => boardsRepo.remove(id);
 
