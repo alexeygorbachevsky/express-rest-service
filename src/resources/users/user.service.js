@@ -5,7 +5,7 @@ const usersRepo = require('./user.memory.repository');
  */
 
 /**
- * @import {UserInstance} from './user.model.js'
+ * @import {UserInstance} from './user.model.ts'
  */
 
 /**

@@ -1,3 +1,4 @@
+export {};
 const express = require('express');
 const swaggerUI = require('swagger-ui-express');
 const path = require('path');
@@ -15,13 +16,20 @@ app.use(express.json());
 
 app.use('/doc', swaggerUI.serve, swaggerUI.setup(swaggerDocument));
 
-app.use('/', (req, res, next) => {
-  if (req.originalUrl === '/') {
-    res.send('Service is running!');
-    return;
+app.use(
+  '/',
+  (
+    req: { originalUrl: string },
+    res: { send: (arg0: string) => void },
+    next: () => void
+  ) => {
+    if (req.originalUrl === '/') {
+      res.send('Service is running!');
+      return;
+    }
+    next();
   }
-  next();
-});
+);
 
 app.use('/users', userRouter);
 app.use('/boards', boardRouter);

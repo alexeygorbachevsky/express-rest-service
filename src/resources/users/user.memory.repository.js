@@ -15,7 +15,7 @@ const TABLE_NAME = 'Users';
  */
 
 /**
- * @import {UserInstance} from './user.model.js'
+ * @import {UserInstance} from './user.model.ts'
  */
 
 /**

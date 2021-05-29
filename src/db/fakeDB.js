@@ -7,7 +7,7 @@ const Task = require('../resources/tasks/task.model');
  */
 
 /**
- * @import {UserInstance} from '../resources/users/user.model.js'
+ * @import {UserInstance} from '../resources/users/user.model.ts'
  * @import {TaskInstance} from '../resources/tasks/task.model.js'
  * @import {BoardInstance} from '../resources/boards/board.model.js'
  */
