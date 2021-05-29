@@ -38,7 +38,7 @@ const get = async (id) => {
 };
 
 /**
- * Register (add to db) new user. Returns the promise that resolves with user object
+ * Create (add to db) new user. Returns the promise that resolves with user object
  * @param {UserInstance} user - User object
  * @returns {Promise<UserInstance>} - User object
  */
@@ -48,6 +48,20 @@ const post = async (user) => {
     throw new ErrorDefiner(`User is not saved`, Errors.NOT_FOUND);
   }
   return newUser;
+};
+
+/**
+ *  Change user info in db. Returns the promise that resolves with updated user object
+ * @param {string} id - User ID
+ * @param {Object} newData - User Data that will be changed
+ * @returns {Promise<UserInstance>} - User object that was updated
+ */
+const put = async (id, newData) => {
+  const user = await updateEntity(TABLE_NAME, id, newData);
+  if (!user) {
+    throw new ErrorDefiner(`User is not found for updating`, Errors.NOT_FOUND);
+  }
+  return user;
 };
 
 /**
@@ -62,20 +76,6 @@ const remove = async (id) => {
       `User with ${id} id is not found for removing`,
       Errors.NOT_FOUND
     );
-  }
-  return user;
-};
-
-/**
- *  Change user info in db. Returns the promise that resolves with updated user object
- * @param {string} id - User ID
- * @param {Object} newData - User Data that will be changed
- * @returns {Promise<UserInstance>} - User object that was updated
- */
-const put = async (id, newData) => {
-  const user = await updateEntity(TABLE_NAME, id, newData);
-  if (!user) {
-    throw new ErrorDefiner(`User is not found for updating`, Errors.NOT_FOUND);
   }
   return user;
 };
