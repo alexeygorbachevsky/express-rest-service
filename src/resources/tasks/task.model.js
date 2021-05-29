@@ -32,9 +32,9 @@ class Task {
     title = 'TITLE',
     order = 0,
     description = 'DESCRIPTION',
-    userId = null,
-    boardId = null,
-    columnId = null
+    userId = '',
+    boardId = '',
+    columnId = ''
   } = {}) {
     this.id = id;
     this.title = title;

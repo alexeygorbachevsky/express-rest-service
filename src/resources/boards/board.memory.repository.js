@@ -49,7 +49,7 @@ const post = async (board) => saveEntity(TABLE_NAME, board);
 
 /**
  *  Change board info in db. Returns the promise that resolves with updated board object
- * @param {string} id - User ID
+ * @param {string} id - Board ID
  * @param {Object} board - Board data that will be changed
  * @returns {Promise<BoardInstance>} - Board object that was updated
  */
