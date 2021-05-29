@@ -29,18 +29,18 @@ const get = (id) => usersRepo.get(id);
 const post = (user) => usersRepo.post(user);
 
 /**
- * Remove existed user. Returns the promise that resolves with removed user object
- * @param {string} id - User ID
- * @returns {Promise<UserInstance>} - User object that was removed
- */
-const remove = (id) => usersRepo.remove(id);
-
-/**
  * Change user info. Returns the promise that resolves with updated user object
  * @param {string} id - User ID
  * @param {Object} newData - User Data that will be changed
  * @returns {Promise<UserInstance>} - User object that was updated
  */
 const put = (id, newData) => usersRepo.put(id, newData);
+
+/**
+ * Remove existed user. Returns the promise that resolves with removed user object
+ * @param {string} id - User ID
+ * @returns {Promise<UserInstance>} - User object that was removed
+ */
+const remove = (id) => usersRepo.remove(id);
 
 module.exports = { getAll, get, post, remove, put };

@@ -7,7 +7,9 @@ const Task = require('../resources/tasks/task.model');
  */
 
 /**
- * @import {UserInstance} from '../resources/user.model.js'
+ * @import {UserInstance} from '../resources/users/user.model.js'
+ * @import {TaskInstance} from '../resources/tasks/task.model.js'
+ * @import {BoardInstance} from '../resources/boards/board.model.js'
  */
 
 /**
@@ -22,8 +24,8 @@ const Task = require('../resources/tasks/task.model');
  * Memory DB
  * @typedef {Object} fakeDB
  * @property {UserInstance[]} Users - Array of users
- * @property {Array}  Boards - Array of boards
- * @property {Array}  Tasks - Array of tasks
+ * @property {BoardInstance[]}  Boards - Array of boards
+ * @property {TaskInstance[]}  Tasks - Array of tasks
  * @property {Normalize}  normalize - function that normalizes db structure
  */
 
@@ -34,7 +36,6 @@ const db = {
   Users: [],
   Boards: [],
   Tasks: [],
-  /** @type {Normalize} */
   normalize(removingEntity, tableName) {
     switch (tableName) {
       case 'Users': {
