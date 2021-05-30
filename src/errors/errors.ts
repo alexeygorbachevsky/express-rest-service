@@ -5,6 +5,8 @@ class ErrorDefiner extends Error {
     super(message);
     this.status = status;
   }
+
+  status: number;
 }
 
 module.exports = { ErrorDefiner };

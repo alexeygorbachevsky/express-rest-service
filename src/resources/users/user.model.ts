@@ -1,11 +1,12 @@
+export {};
 const uuid = require('uuid');
 
-type IUser = {
+export interface IUser {
   id: string;
   name: string;
   login: string;
   password: string;
-};
+}
 
 class User implements IUser {
   constructor({
