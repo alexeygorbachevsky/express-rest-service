@@ -24,7 +24,7 @@ const db:Db = {
   normalize(removingEntity, tableName) {
     switch (tableName) {
       case 'Users': {
-        this.Tasks = this.Tasks.map((task) => ({ ...task, userId: '' }));
+        this.Tasks = this.Tasks.map((task) => ({ ...task, userId: null }));
         break;
       }
       case 'Boards': {

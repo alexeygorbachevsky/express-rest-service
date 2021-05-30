@@ -6,9 +6,9 @@ export interface ITask {
   title: string;
   order: number;
   description: string;
-  userId: string;
-  boardId: string;
-  columnId: string;
+  userId: string | null;
+  boardId: string | null;
+  columnId: string | null;
 }
 
 class Task implements ITask {
@@ -17,10 +17,10 @@ class Task implements ITask {
     title = 'TITLE',
     order = 0,
     description = 'DESCRIPTION',
-    userId = '',
-    boardId = '',
-    columnId = '',
-  } = {}) {
+    userId = null,
+    boardId = null,
+    columnId = null,
+  } = {} as ITask) {
     this.id = id;
     this.title = title;
     this.order = order;
@@ -34,11 +34,11 @@ class Task implements ITask {
   title: string;
   order: number;
   description: string;
-  userId: string;
-  boardId: string;
-  columnId: string;
+  userId: string | null;
+  boardId: string | null;
+  columnId: string | null;
 
-  static fromRequest(body: ITask): ITask {
+  static fromRequest(body:ITask): ITask {
     return new Task(body);
   }
 }
