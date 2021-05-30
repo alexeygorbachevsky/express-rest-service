@@ -39,7 +39,9 @@ const post = async (task: ITask): Promise<ITask> => {
 };
 
 const put = async (task: ITask): Promise<ITask> => {
-  await get(task.boardId!, task.id);
+  if (task.boardId) {
+    await get(task.boardId, task.id);
+  }
   return updateEntity(TABLE_NAME, task.id, task);
 };
 
