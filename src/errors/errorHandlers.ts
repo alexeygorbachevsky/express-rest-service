@@ -1,4 +1,5 @@
 import { Request, Response, NextFunction, RequestHandler } from 'express';
+import { IErrorDefiner } from './errors';
 
 const { ErrorDefiner } = require('./errors');
 const Errors = require('./constants');
@@ -11,7 +12,7 @@ const asyncWrap = (fn: Fn): RequestHandler => (req, res, next, ...args) => {
 };
 
 const appErrorHandler = (
-  err: ErrorDefiner,
+  err: IErrorDefiner,
   _req: Request,
   res: Response,
   next: NextFunction
