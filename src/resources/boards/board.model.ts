@@ -25,7 +25,9 @@ class Board implements IBoard {
   }
 
   id: string;
+
   title: string;
+
   columns: Column[];
 
   static fromRequest(body: IBoard): IBoard {
