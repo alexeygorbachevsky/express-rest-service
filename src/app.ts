@@ -2,6 +2,7 @@ import { Request, Response, NextFunction } from 'express';
 
 export {};
 const express = require('express');
+const fs = require('fs');
 const swaggerUI = require('swagger-ui-express');
 const path = require('path');
 const YAML = require('yamljs');
@@ -37,5 +38,17 @@ app.use(() => {
 });
 
 app.use(errorHandler);
+
+process.on('uncaughtException', ({ message }: Error) => {
+  const defaultMessage = 'UncaughtException is occurred';
+  // eslint-disable-next-line no-console
+  console.error('UncaughtException error:', message || defaultMessage);
+  fs.appendFileSync(
+    './errors.log',
+    `UncaughtException error: ${message || defaultMessage} \r\n`,
+    { encoding: 'utf8', flag: 'a' }
+  );
+  process.exit(1);
+});
 
 module.exports = app;
