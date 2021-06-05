@@ -2,7 +2,6 @@ import { Request, Response, NextFunction } from 'express';
 
 export {};
 const express = require('express');
-const fs = require('fs');
 const swaggerUI = require('swagger-ui-express');
 const path = require('path');
 const YAML = require('yamljs');
@@ -11,6 +10,7 @@ const boardRouter = require('./resources/boards/board.router');
 const taskRouter = require('./resources/tasks/task.router');
 const errorHandler = require('./middleware/errorHandler');
 const requestLogger = require('./middleware/requestLogger');
+const writeToFile = require('./errors/writeToFile');
 
 const app = express();
 const swaggerDocument = YAML.load(path.join(__dirname, '../doc/api.yaml'));
@@ -39,28 +39,24 @@ app.use(() => {
 
 app.use(errorHandler);
 
-process.on('uncaughtException', ({ message }: Error) => {
-  const defaultMessage = 'UncaughtException is occurred';
+process.on('unhandledRejection', ({ message }: Error) => {
+  const time = new Date();
+  const text = message || 'UnhandledRejection is occurred';
   // eslint-disable-next-line no-console
-  console.error('UncaughtException error:', message || defaultMessage);
-  fs.appendFileSync(
-    './errors.log',
-    `UncaughtException error: ${message || defaultMessage} \r\n`,
-    { encoding: 'utf8', flag: 'a' }
-  );
+  console.error(`UnhandledRejection error: ${text}`);
+  writeToFile(`${time} - UnhandledRejection error: ${text}`);
   process.exit(1);
 });
 
-process.on('unhandledRejection', ({ message }: Error) => {
-  const defaultMessage = 'UnhandledRejection is occurred';
+process.on('uncaughtException', ({ message }: Error) => {
+  const time = new Date();
+  const text = message || 'UncaughtException is occurred';
   // eslint-disable-next-line no-console
-  console.error('UnhandledRejection error:', message || defaultMessage);
-  fs.appendFileSync(
-    './errors.log',
-    `UnhandledRejection error: ${message || defaultMessage} \r\n`,
-    { encoding: 'utf8', flag: 'a' }
-  );
+  console.error('UncaughtException error:', text);
+  writeToFile(`${time} - UncaughtException error: ${text}`);
   process.exit(1);
 });
+
+Promise.reject(Error('Oops!'));
 
 module.exports = app;

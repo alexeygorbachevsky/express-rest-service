@@ -7,5 +7,4 @@ const asyncWrap = (fn: Fn): RequestHandler => (req, res, next, ...args) => {
   return Promise.resolve(fnReturn).catch(next);
 };
 
-
 module.exports = { asyncWrap };

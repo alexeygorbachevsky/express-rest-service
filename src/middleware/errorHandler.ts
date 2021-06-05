@@ -3,6 +3,7 @@ import { IErrorDefiner } from '../errors/errors';
 
 const { ErrorDefiner } = require('../errors/errors');
 const Errors = require('../errors/constants');
+const writeToFile = require('../errors/writeToFile');
 
 const errorHandler = (
   err: IErrorDefiner,
@@ -10,6 +11,7 @@ const errorHandler = (
   res: Response,
   next: NextFunction
 ) => {
+  const time = new Date();
   switch (true) {
     case err instanceof ErrorDefiner: {
       // eslint-disable-next-line no-console
@@ -23,6 +25,9 @@ const errorHandler = (
       res.status(Errors.SERVER_ERROR).send('Internal Server Error');
     }
   }
+  const errorText = err.message || 'Internal Server Error';
+  writeToFile(`${time} - ${errorText}`);
+
   next(err);
 };
 
