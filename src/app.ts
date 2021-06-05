@@ -51,4 +51,16 @@ process.on('uncaughtException', ({ message }: Error) => {
   process.exit(1);
 });
 
+process.on('unhandledRejection', ({ message }: Error) => {
+  const defaultMessage = 'UnhandledRejection is occurred';
+  // eslint-disable-next-line no-console
+  console.error('UnhandledRejection error:', message || defaultMessage);
+  fs.appendFileSync(
+    './errors.log',
+    `UnhandledRejection error: ${message || defaultMessage} \r\n`,
+    { encoding: 'utf8', flag: 'a' }
+  );
+  process.exit(1);
+});
+
 module.exports = app;
