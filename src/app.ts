@@ -8,7 +8,7 @@ const YAML = require('yamljs');
 const userRouter = require('./resources/users/user.router');
 const boardRouter = require('./resources/boards/board.router');
 const taskRouter = require('./resources/tasks/task.router');
-const errorLogger = require('./middleware/errorLogger');
+const errorHandler = require('./middleware/errorHandler');
 const requestLogger = require('./middleware/requestLogger');
 
 const app = express();
@@ -32,6 +32,10 @@ app.use('/users', userRouter);
 app.use('/boards', boardRouter);
 app.use('/boards/:boardId/tasks', taskRouter);
 
-app.use(errorLogger);
+app.use(() => {
+  throw new Error();
+});
+
+app.use(errorHandler);
 
 module.exports = app;

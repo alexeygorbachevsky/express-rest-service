@@ -4,7 +4,7 @@ import { IErrorDefiner } from '../errors/errors';
 const { ErrorDefiner } = require('../errors/errors');
 const Errors = require('../errors/constants');
 
-const appErrorHandler = (
+const errorHandler = (
   err: IErrorDefiner,
   _req: Request,
   res: Response,
@@ -12,14 +12,18 @@ const appErrorHandler = (
 ) => {
   switch (true) {
     case err instanceof ErrorDefiner: {
-      res.sendStatus(err.status);
+      // eslint-disable-next-line no-console
+      console.error('Status code', err.status);
+      res.status(err.status).send(err.message);
       break;
     }
     default: {
-      res.sendStatus(Errors.SERVER_ERROR);
+      // eslint-disable-next-line no-console
+      console.error('Status code', Errors.SERVER_ERROR);
+      res.status(Errors.SERVER_ERROR).send('Internal Server Error');
     }
   }
-  next();
+  next(err);
 };
 
-module.exports = appErrorHandler;
+module.exports = errorHandler;
