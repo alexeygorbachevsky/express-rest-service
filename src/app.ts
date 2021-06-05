@@ -57,6 +57,4 @@ process.on('uncaughtException', ({ message }: Error) => {
   process.exit(1);
 });
 
-Promise.reject(Error('Oops!'));
-
 module.exports = app;
