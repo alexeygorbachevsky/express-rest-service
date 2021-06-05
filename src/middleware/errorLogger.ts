@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
 
-const logErrors = (
+const errorLogger = (
   err: Error,
   _req: Request,
   _res: Response,
@@ -11,4 +11,4 @@ const logErrors = (
   next(err);
 };
 
-module.exports = logErrors;
+module.exports = errorLogger;
