@@ -1,3 +1,6 @@
+import { ITask } from './task.model';
+import { TableNames } from '../../db/fakeDB';
+
 const {
   getAllEntities,
   getEntity,
@@ -8,13 +11,13 @@ const {
 const { ErrorDefiner } = require('../../errors/errors');
 const Errors = require('../../errors/constants');
 
-const TABLE_NAME = 'Tasks';
+const TABLE_NAME: TableNames = 'Tasks';
 
-const getAll = async (id) =>
-  getAllEntities(TABLE_NAME).filter(({ boardId }) => boardId === id);
+const getAll = async (id: string): Promise<ITask[]> =>
+  getAllEntities(TABLE_NAME).filter(({ boardId }: ITask) => boardId === id);
 
-const get = async (boardId, id) => {
-  const task = await getEntity(TABLE_NAME, id);
+const get = async (boardId: string, id: string): Promise<ITask> => {
+  const task: ITask = await getEntity(TABLE_NAME, id);
   if (!task) {
     throw new ErrorDefiner(`Task with ${id} id is not found`, Errors.NOT_FOUND);
   }
@@ -27,16 +30,23 @@ const get = async (boardId, id) => {
   return task;
 };
 
-const post = async (task) => {
-  const newTask = await saveEntity(TABLE_NAME, task);
+const post = async (task: ITask): Promise<ITask> => {
+  const newTask: ITask = await saveEntity(TABLE_NAME, task);
   if (!newTask) {
     throw new ErrorDefiner(`Task is not saved`, Errors.NOT_FOUND);
   }
   return newTask;
 };
 
-const remove = async (boardId, id) => {
-  const task = await removeEntity(TABLE_NAME, id);
+const put = async (task: ITask): Promise<ITask> => {
+  if (task.boardId) {
+    await get(task.boardId, task.id);
+  }
+  return updateEntity(TABLE_NAME, task.id, task);
+};
+
+const remove = async (boardId: string, id: string): Promise<ITask> => {
+  const task: ITask = await removeEntity(TABLE_NAME, id);
   if (!task || boardId !== task.boardId) {
     throw new ErrorDefiner(
       `Task with ${id} id is not found for removing`,
@@ -44,11 +54,6 @@ const remove = async (boardId, id) => {
     );
   }
   return task;
-};
-
-const put = async (task) => {
-  await get(task.boardId, task.id);
-  return updateEntity(TABLE_NAME, task.id, task);
 };
 
 module.exports = { getAll, get, remove, post, put };

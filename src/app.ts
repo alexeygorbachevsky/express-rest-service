@@ -1,3 +1,6 @@
+import { Request, Response, NextFunction } from 'express';
+
+export {};
 const express = require('express');
 const swaggerUI = require('swagger-ui-express');
 const path = require('path');
@@ -15,7 +18,7 @@ app.use(express.json());
 
 app.use('/doc', swaggerUI.serve, swaggerUI.setup(swaggerDocument));
 
-app.use('/', (req, res, next) => {
+app.use('/', (req: Request, res: Response, next: NextFunction) => {
   if (req.originalUrl === '/') {
     res.send('Service is running!');
     return;
