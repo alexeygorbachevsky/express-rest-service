@@ -3,7 +3,7 @@ import { IErrorDefiner } from '../errors/errors';
 
 const { ErrorDefiner } = require('../errors/errors');
 const Errors = require('../errors/constants');
-const writeToFile = require('../errors/writeToFile');
+const writeToFile = require('../logger/writeToFile');
 
 const errorHandler = (
   err: IErrorDefiner,

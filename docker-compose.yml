@@ -12,7 +12,6 @@ services:
       PORT: ${PORT}
     volumes:
       - .:/usr/app
-      - node_modules:/usr/node/app/node_modules
       - ./logs:/usr/app/logs
     networks:
       - custom_net

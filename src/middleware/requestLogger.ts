@@ -1,6 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
 import { finished } from 'stream';
-import * as fs from 'fs';
+
+const writeToFile = require('../logger/writeToFile');
 
 const requestLogger = (req: Request, res: Response, next: NextFunction) => {
   const { url = '/', method, query = {}, body = {} } = req;
@@ -27,10 +28,7 @@ const requestLogger = (req: Request, res: Response, next: NextFunction) => {
       // eslint-disable-next-line no-console
       console.log(info);
     }
-    fs.appendFileSync('./logs/info.log', `${info} \r\n`, {
-      encoding: 'utf8',
-      flag: 'a',
-    });
+    writeToFile(info, './logs/info.log');
   });
 };
 
