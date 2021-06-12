@@ -27,7 +27,7 @@ const requestLogger = (req: Request, res: Response, next: NextFunction) => {
       // eslint-disable-next-line no-console
       console.log(info);
     }
-    fs.appendFileSync('./logging.log', `${info} \r\n`, {
+    fs.appendFileSync('./logs/info.log', `${info} \r\n`, {
       encoding: 'utf8',
       flag: 'a',
     });
