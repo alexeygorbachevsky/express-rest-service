@@ -1,17 +1,38 @@
-version: '3'
+version: '3.8'
 services:
   node:
+    image: alexeygorbachevskiyy/node
     build: .
+    restart: on-failure
     ports:
       - ${PORT}:${PORT}
     depends_on:
       - postgres
-    postgres:
-      build: ./database
-      ports:
-        - ${POSTGRES_PORT}-${POSTGRES_PORT}
-      environment:
-        POSTGRES_USER: ${POSTGRES_USER}
-        POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
-        POSTGRES_DB: ${POSTGRES_DB}
-
+    environment:
+      PORT: ${PORT}
+    volumes:
+      - .:/usr/app
+      - node_modules:/usr/node/app/node_modules
+    networks:
+      - custom_net
+  postgres:
+    image: alexeygorbachevskiyy/postgres
+    build: ./database/
+    restart: on-failure
+    ports:
+      - ${POSTGRES_PORT}:${POSTGRES_PORT}
+    volumes:
+      - ./pg_data:/var/lib/postgresql/data/pgdata
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+      PGDATA: /var/lib/postgresql/data/pgdata
+    networks:
+      - custom_net
+networks:
+  custom_net:
+    driver: bridge
+volumes:
+  node_modules:
+  pgdata:
