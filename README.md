@@ -22,7 +22,7 @@ npm install
 ```
 npm start
 ```
-Use one of the next same commands for build docker images, create and start docker containers:
+Use one of the next commands for build docker images, create and start docker containers:
 ```
 docker compose up
 ```
