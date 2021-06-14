@@ -3,7 +3,7 @@ import { Request, Response } from 'express';
 const router = require('express').Router({ mergeParams: true });
 const Task = require('./task.model');
 const taskService = require('./task.service');
-const { asyncWrap } = require('../../errors/errorHandlers');
+const { asyncWrap } = require('../../middleware/asyncWrapper');
 
 router.route('/').get(
   asyncWrap(async (req: Request, res: Response) => {

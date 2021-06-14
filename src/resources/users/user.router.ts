@@ -4,7 +4,7 @@ export {};
 const router = require('express').Router();
 const User = require('./user.model');
 const usersService = require('./user.service');
-const { asyncWrap } = require('../../errors/errorHandlers');
+const { asyncWrap } = require('../../middleware/asyncWrapper');
 
 router.route('/').get(
   asyncWrap(async (_req: Request, res: Response) => {
