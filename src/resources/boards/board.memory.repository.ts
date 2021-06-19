@@ -1,22 +1,14 @@
+import { getRepository } from 'typeorm';
 import { IBoard } from './board.model';
-import { TableNames } from '../../db/fakeDB';
 
-const {
-  getAllEntities,
-  getEntity,
-  saveEntity,
-  removeEntity,
-  updateEntity,
-} = require('../../db/fakeDB');
 const { ErrorDefiner } = require('../../errors/errors');
 const Errors = require('../../errors/constants');
+const Board = require('./board.model');
 
-const TABLE_NAME: TableNames = 'Boards';
+const getAll = async () => getRepository(Board).find();
 
-const getAll = async (): Promise<IBoard[]> => getAllEntities(TABLE_NAME);
-
-const get = async (id: string): Promise<IBoard> => {
-  const board: IBoard = await getEntity(TABLE_NAME, id);
+const get = async (id: string) => {
+  const board = await getRepository(Board).findOne(id);
   if (!board) {
     throw new ErrorDefiner(
       `Board with ${id} id is not found`,
@@ -26,22 +18,21 @@ const get = async (id: string): Promise<IBoard> => {
   return board;
 };
 
-const post = async (board: IBoard): Promise<IBoard> =>
-  saveEntity(TABLE_NAME, board);
+const post = async (board: IBoard) => getRepository(Board).save(board);
 
-const put = async (id: string, board: IBoard): Promise<IBoard> => {
-  const entity: IBoard = await updateEntity(TABLE_NAME, id, board);
-  if (!entity) {
+const put = async (id: string, board: IBoard) => {
+  const entity = await getRepository(Board).update(id, board);
+  if (!entity || (entity && !entity.raw)) {
     throw new ErrorDefiner(
       `Board with ${id} id is not found for editing`,
       Errors.NOT_FOUND
     );
   }
-  return entity;
+  return entity.raw;
 };
 
-const remove = async (id: string): Promise<IBoard> => {
-  const board: IBoard = await removeEntity(TABLE_NAME, id);
+const remove = async (id: string) => {
+  const board = await getRepository(Board).delete(id);
   if (!board) {
     throw new ErrorDefiner(
       `Board with ${id} id is not found for removing`,

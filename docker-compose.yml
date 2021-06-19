@@ -10,6 +10,7 @@ services:
       - postgres
     environment:
       PORT: ${PORT}
+      - POSTGRES_HOST=${DOCKER_POSTGRES_HOST}
     volumes:
       - ./src:/usr/app/src
       - ./logs:/usr/app/logs
@@ -17,7 +18,7 @@ services:
       - custom_net
   postgres:
     image: alexeygorbachevskiyy/postgres
-    build: ./database/
+    build: ./src/db/
     restart: on-failure
     ports:
       - ${POSTGRES_PORT}:${POSTGRES_PORT}

@@ -1,46 +1,38 @@
+import { getRepository } from 'typeorm';
 import { IUser } from './user.model';
-import { TableNames } from '../../db/fakeDB';
 
-const {
-  getAllEntities,
-  getEntity,
-  saveEntity,
-  removeEntity,
-  updateEntity,
-} = require('../../db/fakeDB');
 const { ErrorDefiner } = require('../../errors/errors');
 const Errors = require('../../errors/constants');
+const User = require('./user.model');
 
-const TABLE_NAME: TableNames = 'Users';
+const getAll = async () => getRepository(User).find();
 
-const getAll = async (): Promise<IUser[]> => getAllEntities(TABLE_NAME);
-
-const get = async (id: string): Promise<IUser> => {
-  const user: IUser = await getEntity(TABLE_NAME, id);
+const get = async (id: string) => {
+  const user = await getRepository(User).findOne(id);
   if (!user) {
     throw new ErrorDefiner(`User with ${id} id is not found`, Errors.NOT_FOUND);
   }
   return user;
 };
 
-const post = async (user: IUser): Promise<IUser> => {
-  const newUser: IUser = await saveEntity(TABLE_NAME, user);
+const post = async (user: IUser) => {
+  const newUser = await getRepository(User).save(user);
   if (!newUser) {
     throw new ErrorDefiner(`User is not saved`, Errors.NOT_FOUND);
   }
   return newUser;
 };
 
-const put = async (id: string, newData: IUser): Promise<IUser> => {
-  const user: IUser = await updateEntity(TABLE_NAME, id, newData);
-  if (!user) {
+const put = async (id: string, newData: IUser) => {
+  const user = await getRepository(User).update(id, newData);
+  if (!user || (user && !user.raw)) {
     throw new ErrorDefiner(`User is not found for updating`, Errors.NOT_FOUND);
   }
-  return user;
+  return user.raw;
 };
 
-const remove = async (id: string): Promise<IUser> => {
-  const user: IUser = await removeEntity(TABLE_NAME, id);
+const remove = async (id: string) => {
+  const user = await getRepository(User).delete(id);
   if (!user) {
     throw new ErrorDefiner(
       `User with ${id} id is not found for removing`,
