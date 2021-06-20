@@ -2,7 +2,6 @@ import { ConnectionOptions } from 'typeorm';
 
 const {
   POSTGRES_HOST,
-  // DOCKER_POSTGRES_HOST,
   POSTGRES_PORT,
   POSTGRES_DB,
   POSTGRES_USER,
@@ -11,12 +10,12 @@ const {
 
 const config: ConnectionOptions = {
   type: 'postgres',
+  // For running app not from docker see README or just change POSTGRES_HOST to 'localhost'
   host: POSTGRES_HOST,
-  // host: DOCKER_POSTGRES_HOST,
   port: POSTGRES_PORT,
-  database: POSTGRES_DB || 'postgres',
-  username: POSTGRES_USER || 'postgres',
-  password: POSTGRES_PASSWORD || 'postgres',
+  database: POSTGRES_DB,
+  username: POSTGRES_USER,
+  password: POSTGRES_PASSWORD,
   entities: [
     'src/resources/**/*.model{.ts,.js}',
     'build/resources/**/*.model{.ts,.js}',
