@@ -1,18 +1,22 @@
+import { ConnectionOptions } from 'typeorm';
+
 const {
   POSTGRES_HOST,
+  // DOCKER_POSTGRES_HOST,
   POSTGRES_PORT,
   POSTGRES_DB,
   POSTGRES_USER,
   POSTGRES_PASSWORD,
-} = require('../common/config');
+} = require('./config');
 
-const config = {
+const config: ConnectionOptions = {
   type: 'postgres',
   host: POSTGRES_HOST,
+  // host: DOCKER_POSTGRES_HOST,
   port: POSTGRES_PORT,
-  database: POSTGRES_DB,
-  username: POSTGRES_USER,
-  password: POSTGRES_PASSWORD,
+  database: POSTGRES_DB || 'postgres',
+  username: POSTGRES_USER || 'postgres',
+  password: POSTGRES_PASSWORD || 'postgres',
   entities: [
     'src/resources/**/*.model{.ts,.js}',
     'build/resources/**/*.model{.ts,.js}',
@@ -25,4 +29,4 @@ const config = {
   },
 };
 
-export default config
+export default config;

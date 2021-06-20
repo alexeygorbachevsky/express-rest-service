@@ -1,4 +1,4 @@
-import config from './ormconfig';
+import config from '../common/ormconfig';
 
 export {};
 const { getConnection, createConnection } = require('typeorm');
@@ -19,7 +19,6 @@ const getDBConnection = async () => {
       }
     } else {
       await createConnection(config);
-      // await connection.runMigrations();
     }
     // eslint-disable-next-line no-console
     console.log('Successfully connected to DB');
