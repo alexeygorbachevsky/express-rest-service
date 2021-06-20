@@ -1,9 +1,8 @@
 import { getRepository } from 'typeorm';
-import { IBoard } from './board.model';
+import Board, { IBoard } from './board.model';
 
 const { ErrorDefiner } = require('../../errors/errors');
 const Errors = require('../../errors/constants');
-const Board = require('./board.model');
 
 const getAll = async () => getRepository(Board).find();
 
@@ -21,14 +20,15 @@ const get = async (id: string) => {
 const post = async (board: IBoard) => getRepository(Board).save(board);
 
 const put = async (id: string, board: IBoard) => {
-  const entity = await getRepository(Board).update(id, board);
-  if (!entity || (entity && !entity.raw)) {
+  const { columns, ...rest } = board;
+  const updatedBoard = await getRepository(Board).update(id, rest);
+  if (!updatedBoard || (updatedBoard && !updatedBoard.raw)) {
     throw new ErrorDefiner(
-      `Board with ${id} id is not found for editing`,
+      `Board with ${id} id is not updated`,
       Errors.NOT_FOUND
     );
   }
-  return entity.raw;
+  return updatedBoard.raw;
 };
 
 const remove = async (id: string) => {

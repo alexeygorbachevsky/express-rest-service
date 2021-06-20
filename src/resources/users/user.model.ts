@@ -44,4 +44,4 @@ class User implements IUser {
   }
 }
 
-module.exports = User;
+export default User;

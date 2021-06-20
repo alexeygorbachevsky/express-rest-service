@@ -1,8 +1,8 @@
+import config from './ormconfig';
+
 export {};
 const { getConnection, createConnection } = require('typeorm');
 const writeToFile = require('../logger/writeToFile');
-
-const config = require('./ormconfig');
 
 const getDBConnection = async () => {
   let connection;

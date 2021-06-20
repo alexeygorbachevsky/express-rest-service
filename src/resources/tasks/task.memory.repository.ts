@@ -1,12 +1,11 @@
 import { getRepository } from 'typeorm';
-import { ITask } from './task.model';
+import Task, { ITask } from './task.model';
 
 const { ErrorDefiner } = require('../../errors/errors');
 const Errors = require('../../errors/constants');
-const Task = require('./task.model');
 
 const getAll = async (id: string) =>
-  getRepository(Task).findOne({ where: { boardId: id } });
+  getRepository(Task).find({ where: { boardId: id } });
 
 const get = async (boardId: string, id: string) => {
   const task = await getRepository(Task).findOne(id, { where: { boardId } });

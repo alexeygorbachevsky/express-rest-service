@@ -7,6 +7,7 @@ import {
 } from 'typeorm';
 import Column, { IColumn } from '../boards/column.model';
 import Board, { IBoard } from '../boards/board.model';
+import User from '../users/user.model';
 
 export interface ITask {
   id: string;
@@ -61,10 +62,13 @@ class Task implements ITask {
   @TColumn({ type: 'varchar', nullable: true })
   columnId: string | null;
 
+  @ManyToOne(() => User, { onDelete: 'SET NULL' })
+  user!: User;
+
   @ManyToOne(() => Board, { onDelete: 'CASCADE' })
   board!: IBoard;
 
-  @ManyToOne(() => Column)
+  @ManyToOne(() => Column, { onDelete: 'SET NULL' })
   column!: IColumn;
 
   static fromRequest(body: ITask): ITask {

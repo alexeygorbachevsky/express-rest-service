@@ -1,8 +1,9 @@
 import { Request, Response } from 'express';
+import User from './user.model';
 
 export {};
 const router = require('express').Router();
-const User = require('./user.model');
+
 const usersService = require('./user.service');
 const { asyncWrap } = require('../../middleware/asyncWrapper');
 

@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
+import Board from './board.model';
 
 const router = require('express').Router();
-const Board = require('./board.model');
 const boardService = require('./board.service');
 const { asyncWrap } = require('../../middleware/asyncWrapper');
 

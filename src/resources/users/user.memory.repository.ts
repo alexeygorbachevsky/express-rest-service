@@ -1,9 +1,9 @@
 import { getRepository } from 'typeorm';
-import { IUser } from './user.model';
+import User, { IUser } from './user.model';
 
 const { ErrorDefiner } = require('../../errors/errors');
 const Errors = require('../../errors/constants');
-const User = require('./user.model');
+
 
 const getAll = async () => getRepository(User).find();
 

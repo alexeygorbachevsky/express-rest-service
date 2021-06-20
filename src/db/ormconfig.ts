@@ -6,12 +6,23 @@ const {
   POSTGRES_PASSWORD,
 } = require('../common/config');
 
-module.exports = {
+const config = {
   type: 'postgres',
   host: POSTGRES_HOST,
   port: POSTGRES_PORT,
   database: POSTGRES_DB,
   username: POSTGRES_USER,
   password: POSTGRES_PASSWORD,
-  entities: ['build/**/**/*.model{.ts,.js}', 'src/**/**/*.model{.ts,.js}'],
+  entities: [
+    'src/resources/**/*.model{.ts,.js}',
+    'build/resources/**/*.model{.ts,.js}',
+  ],
+  synchronize: false,
+  migrationsRun: true,
+  migrations: ['src/migrations/*.ts'],
+  cli: {
+    migrationsDir: 'src/migrations',
+  },
 };
+
+export default config
