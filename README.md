@@ -19,9 +19,16 @@ npm install
 
 ## Running application
 
-```
-npm start
-```
+Follow next steps for running app ```not from Docker```  ```or``` 
+just change host value to ``` 'localhost' ``` in ```src/common/ormconfig.ts``` (See 13-14 lines) and ```npm start```.
+
+1. Open any text editor from ```admin roots```.
+2. Open ```hosts``` file (Path for Windows users is C:\Windows\System32\drivers\etc.)
+If you don't know path for hosts file in your OS, check in google.
+3. Insert ```127.0.0.1       postgres``` in the end of file.
+
+4. ```npm start```
+
 Use one of the next commands for build docker images, create and start docker containers:
 ```
 docker compose up
