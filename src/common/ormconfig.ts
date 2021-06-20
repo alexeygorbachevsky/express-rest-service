@@ -10,7 +10,7 @@ const {
 
 const config: ConnectionOptions = {
   type: 'postgres',
-  // For running app not from docker see README or just change POSTGRES_HOST to 'localhost'
+  // For running app not from docker change host (POSTGRES_HOST) value to 'localhost'
   host: POSTGRES_HOST,
   port: POSTGRES_PORT,
   database: POSTGRES_DB,

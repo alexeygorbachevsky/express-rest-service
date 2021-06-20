@@ -16,6 +16,7 @@ services:
     networks:
       - custom_net
   postgres:
+    container_name: postgres
     image: alexeygorbachevskiyy/postgres
     build: ./src/db/
     restart: on-failure

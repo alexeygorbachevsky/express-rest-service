@@ -19,13 +19,9 @@ npm install
 
 ## Running application
 
-Follow next steps for running app ```not from Docker```  ```or``` 
-just change host value to ``` 'localhost' ``` in ```src/common/ormconfig.ts``` (See 13-14 lines) and ```npm start```.
+For running app ```not from Docker``` change host value to ``` 'localhost' ``` in ```src/common/ormconfig.ts```. 
+See 13-14 lines.
 
-1. Open any text editor from ```admin roots```.
-2. Open ```hosts``` file (Path for Windows users is C:\Windows\System32\drivers\etc.)
-If you don't know path for hosts file in your OS, check in google.
-3. Insert ```127.0.0.1       postgres``` in the end of file.
 
 4. ```npm start```
 
