@@ -22,6 +22,14 @@ npm install
 ```
 npm start
 ```
+Use one of the next commands for build docker images, create and start docker containers:
+```
+docker compose up
+```
+or
+```
+docker-compose up
+```
 
 After starting the app on port (4000 as default) you can open
 in your browser OpenAPI documentation by typing http://localhost:4000/doc/.
