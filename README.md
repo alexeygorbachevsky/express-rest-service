@@ -19,8 +19,7 @@ npm install
 
 ## Running application
 
-1. For running app ```not from Docker``` change host value to ``` 'localhost' ``` in ```src/common/ormconfig.ts```. 
-See 13-14 lines.
+1. For running app ```from Docker``` change ```POSTGRES_HOST``` value to ``` 'host.docker.internal' ``` in ```.env``` file. 
 
 2. ```npm start```
 

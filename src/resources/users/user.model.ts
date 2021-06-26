@@ -1,5 +1,6 @@
 import { v1 as uuid } from 'uuid';
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import bcrypt from 'bcryptjs';
 
 export interface IUser {
   id: string;
@@ -31,7 +32,7 @@ class User implements IUser {
   @Column('varchar', { length: 50 })
   login: string;
 
-  @Column('varchar', { length: 50 })
+  @Column('varchar', { length: 300 })
   password: string;
 
   static toResponse(user: IUser): Omit<User, 'password'> {
@@ -40,7 +41,7 @@ class User implements IUser {
   }
 
   static fromRequest(body: IUser): IUser {
-    return new User(body);
+    return new User({ ...body, password: bcrypt.hashSync(body.password, 10) });
   }
 }
 
