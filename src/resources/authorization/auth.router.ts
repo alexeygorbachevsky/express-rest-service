@@ -8,11 +8,13 @@ const router = require('express').Router();
 
 const authService = require('./auth.service');
 const { asyncWrap } = require('../../middleware/asyncWrapper');
+const { JWT_SECRET } = require('../../common/config');
+const Errors = require('../../errors/constants');
 
 router.route('/').post(
   asyncWrap(async (req: Request, res: Response) => {
     if (req.body && (!req.body.login || !req.body.password)) {
-      res.status(404).send({ error: 'User not found.' });
+      res.status(Errors.NOT_FOUND).send({ error: 'User not found.' });
     }
 
     const user = await authService.get(req.body.login);
@@ -20,22 +22,25 @@ router.route('/').post(
     if (user) {
       bcrypt.compare(req.body.password, user.password, (err, matches) => {
         if (err) {
-          res.status(401).send({ error: 'Failed to authenticate token.' });
+          res.status(Errors.AUTH_FAILED).send({ error: 'Failed to authenticate token.' });
         }
         if (matches) {
           res.json({
-            user,
             message: 'Successfully authenticated.',
-            token: jwt.sign({ userId: user.id, login: user.login }, 'secret', {
-              expiresIn: 60 * 60 * 24,
-            }),
+            token: jwt.sign(
+              { userId: user.id, login: user.login },
+              `${JWT_SECRET}`,
+              {
+                expiresIn: 60 * 60 * 24,
+              }
+            ),
           });
         } else {
-          res.status(401).send({ error: 'Passwords do not match.' });
+          res.status(Errors.AUTH_FAILED).send({ error: 'Passwords do not match.' });
         }
       });
     } else {
-      res.status(404).send({ error: 'User not found.' });
+      res.status(Errors.NOT_FOUND).send({ error: 'User not found.' });
     }
   })
 );
