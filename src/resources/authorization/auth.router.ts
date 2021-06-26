@@ -14,7 +14,7 @@ const Errors = require('../../errors/constants');
 router.route('/').post(
   asyncWrap(async (req: Request, res: Response) => {
     if (req.body && (!req.body.login || !req.body.password)) {
-      res.status(Errors.NOT_FOUND).send({ error: 'User not found.' });
+      res.status(Errors.FORBIDDEN).send({ error: 'User not found.' });
     }
 
     const user = await authService.get(req.body.login);
@@ -40,7 +40,7 @@ router.route('/').post(
         }
       });
     } else {
-      res.status(Errors.NOT_FOUND).send({ error: 'User not found.' });
+      res.status(Errors.FORBIDDEN).send({ error: 'User not found.' });
     }
   })
 );
