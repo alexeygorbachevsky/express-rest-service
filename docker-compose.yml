@@ -16,8 +16,9 @@ services:
     networks:
       - custom_net
   postgres:
+    container_name: postgres
     image: alexeygorbachevskiyy/postgres
-    build: ./database/
+    build: ./src/db/
     restart: on-failure
     ports:
       - ${POSTGRES_PORT}:${POSTGRES_PORT}

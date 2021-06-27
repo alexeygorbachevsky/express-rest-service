@@ -1,33 +1,33 @@
 import { Request, Response } from 'express';
+import Task from './task.model';
 
 const router = require('express').Router({ mergeParams: true });
-const Task = require('./task.model');
 const taskService = require('./task.service');
 const { asyncWrap } = require('../../middleware/asyncWrapper');
 
 router.route('/').get(
   asyncWrap(async (req: Request, res: Response) => {
-    const boards = await taskService.getAll(req.params['boardId']);
-    await res.json(boards);
+    const tasks = await taskService.getAll(req.params['boardId']);
+    await res.json(tasks);
   })
 );
 
 router.route('/:id').get(
   asyncWrap(async (req: Request, res: Response) => {
-    const board = await taskService.get(
+    const task = await taskService.get(
       req.params['boardId'],
       req.params['id']
     );
-    res.status(200).send(board);
+    res.status(200).send(task);
   })
 );
 
 router.route('/').post(
   asyncWrap(async (req: Request, res: Response) => {
-    const board = await taskService.post(
+    const task = await taskService.post(
       Task.fromRequest({ ...req.body, boardId: req.params['boardId'] })
     );
-    res.status(201).send(board);
+    res.status(201).send(task);
   })
 );
 
@@ -40,14 +40,14 @@ router.route('/:id').delete(
 
 router.route('/:id').put(
   asyncWrap(async (req: Request, res: Response) => {
-    const board = await taskService.put(
+    const task = await taskService.put(
       Task.fromRequest({
         ...req.body,
         id: req.params['id'],
         boardId: req.params['boardId'],
       })
     );
-    res.status(200).send(board);
+    res.status(200).send(task);
   })
 );
 

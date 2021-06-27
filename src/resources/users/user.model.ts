@@ -1,5 +1,5 @@
-export {};
-const uuid = require('uuid');
+import { v1 as uuid } from 'uuid';
+import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
 export interface IUser {
   id: string;
@@ -8,25 +8,30 @@ export interface IUser {
   password: string;
 }
 
+@Entity({ name: 'user' })
 class User implements IUser {
   constructor({
-    id = uuid.v1(),
+    id = uuid(),
     name = 'USER',
     login = 'user',
     password = 'P@55w0rd',
-  }={}) {
+  } = {}) {
     this.id = id;
     this.name = name;
     this.login = login;
     this.password = password;
   }
 
+  @PrimaryGeneratedColumn('uuid')
   id: string;
 
+  @Column('varchar', { length: 50 })
   name: string;
 
+  @Column('varchar', { length: 50 })
   login: string;
 
+  @Column('varchar', { length: 50 })
   password: string;
 
   static toResponse(user: IUser): Omit<User, 'password'> {
@@ -39,4 +44,4 @@ class User implements IUser {
   }
 }
 
-module.exports = User;
+export default User;

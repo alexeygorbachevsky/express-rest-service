@@ -19,9 +19,11 @@ npm install
 
 ## Running application
 
-```
-npm start
-```
+1. For running app ```not from Docker``` change host value to ``` 'localhost' ``` in ```src/common/ormconfig.ts```. 
+See 13-14 lines.
+
+2. ```npm start```
+
 Use one of the next commands for build docker images, create and start docker containers:
 ```
 docker compose up
