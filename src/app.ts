@@ -1,6 +1,5 @@
 import { Request, Response, NextFunction } from 'express';
 
-export {};
 const express = require('express');
 const swaggerUI = require('swagger-ui-express');
 const path = require('path');
@@ -8,6 +7,8 @@ const YAML = require('yamljs');
 const userRouter = require('./resources/users/user.router');
 const boardRouter = require('./resources/boards/board.router');
 const taskRouter = require('./resources/tasks/task.router');
+const authRouter = require('./resources/authorization/auth.router');
+const validateSession = require('./middleware/validateSession');
 const errorHandler = require('./middleware/errorHandler');
 const requestLogger = require('./middleware/requestLogger');
 const writeToFile = require('./logger/writeToFile');
@@ -29,6 +30,8 @@ app.use('/', (req: Request, res: Response, next: NextFunction) => {
   next();
 });
 
+app.use('/login', authRouter);
+app.use(validateSession);
 app.use('/users', userRouter);
 app.use('/boards', boardRouter);
 app.use('/boards/:boardId/tasks', taskRouter);

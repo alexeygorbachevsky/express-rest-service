@@ -10,8 +10,8 @@
   "main": "src/server.ts",
   "scripts": {
     "start": "nodemon -L --exitcrash",
-    "prod": "ts-node build/server.js",
     "build": "tsc",
+    "prod": "ts-node build/server.js",
     "migration:generate": "ts-node --transpile-only ./node_modules/typeorm/cli.js --config src/common/ormconfig.ts migration:generate -n Migration",
     "migration:run": "ts-node --transpile-only ./node_modules/typeorm/cli.js --config src/common/ormconfig.ts migration:run",
     "lint": "eslint --ext .js,.ts --fix src/",
@@ -49,11 +49,15 @@
     ]
   },
   "dependencies": {
+    "@types/bcryptjs": "^2.4.2",
     "@types/express-async-wrap": "^1.0.0",
+    "@types/jsonwebtoken": "^8.5.2",
     "@types/swagger-ui": "^3.47.0",
+    "bcryptjs": "^2.4.3",
     "cross-env": "7.0.3",
     "dotenv": "9.0.0",
     "express": "4.17.1",
+    "jsonwebtoken": "^8.5.1",
     "pg": "^8.6.0",
     "swagger-ui-express": "4.1.6",
     "typeorm": "^0.2.34",
