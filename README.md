@@ -14,7 +14,7 @@ git clone {repository URL}
 ## Installing NPM modules
 
 ```
-yarn install
+npm install
 ```
 
 ## Running application
