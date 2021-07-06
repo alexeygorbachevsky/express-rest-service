@@ -7,13 +7,9 @@
   "license": "UNLICENSED",
   "main": "src/main.ts",
   "scripts": {
-    "prebuild": "rimraf dist",
-    "build": "nest build",
-    "format": "prettier --write \\\\\\\"../src/**/*.ts\\\\\\\" \\\\\\\"../test/**/*.ts\\\\\\\"",
+    "build": "tsc",
     "start": "nodemon -L --exitcrash",
-    "start:dev": "nest start --watch",
-    "start:debug": "nest start --debug --watch",
-    "start:prod": "node build/main",
+    "prod": "ts-node build/main.js",
     "lint": "eslint --ext .js,.ts --fix src",
     "test": "cross-env DEBUG=rs:* jest --testMatch \"<rootDir>/test/e2e/test/*.test.js\" --noStackTrace --runInBand",
     "test:auth": "cross-env DEBUG=rs:* TEST_MODE=auth jest --noStackTrace",
@@ -37,8 +33,8 @@
     }
   },
   "lint-staged": {
-    "src/**/*.ts": [
-      "npm run lint"
+    "*.{ts,js}": [
+      "eslint --fix"
     ]
   },
   "dependencies": {
