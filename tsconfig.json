@@ -6,7 +6,7 @@
     "outDir": "./build",
     "rootDir": "./src",
     "downlevelIteration": false,
-    "strict": true,
+    "strict": false,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noImplicitReturns": true,

@@ -1,4 +1,8 @@
 import { ConnectionOptions } from 'typeorm';
+import User from '../users/entities/user.entity';
+import Board from '../boards/entities/board.entity';
+import Task from '../tasks/entities/task.entity';
+import Column from '../boards/entities/column.entity';
 
 const {
   POSTGRES_HOST,
@@ -17,8 +21,12 @@ const config: ConnectionOptions = {
   username: POSTGRES_USER,
   password: POSTGRES_PASSWORD,
   entities: [
-    'src/resources/**/*.model{.ts,.js}',
-    'build/resources/**/*.model{.ts,.js}',
+    // 'src/resources/**/*.model{.ts,.js}',
+    // 'build/resources/**/*.model{.ts,.js}',
+    User,
+    Board,
+    Task,
+    Column,
   ],
   synchronize: false,
   migrationsRun: true,
