@@ -5,8 +5,8 @@ import {
   HttpException,
   Logger,
 } from '@nestjs/common';
-import { Request, Response } from 'express';
 
+const { USE_FASTIFY } = require('../common/config');
 const writeToFile = require('../common/writeToFile');
 
 @Catch(HttpException)
@@ -15,18 +15,40 @@ export class HttpExceptionFilter implements ExceptionFilter {
 
   catch(exception: HttpException, host: ArgumentsHost) {
     const ctx = host.switchToHttp();
-    const response = ctx.getResponse<Response>();
-    const request = ctx.getRequest<Request>();
-    const status = exception.getStatus();
+    const response = ctx.getResponse();
+    const request = ctx.getRequest();
+    const { url = '/', method, query = {}, body = {} } = request;
 
-    const error = `Status code: ${status}, Path: ${request.url}`;
+    const status = exception.getStatus();
+    const eventTime = new Date();
+
+    const info = ` Request Logging:
+        Event time: ${eventTime},
+        Method: ${method}, 
+        Whole url: ${url}, 
+        Query params: ${JSON.stringify(query)}, 
+        Body: ${JSON.stringify(body)}, 
+        Status code: ${status}`;
+    this.logger.log(`${info}`);
+    writeToFile(info, './logs/info.log');
+
+    const error = ` Errors Logging:
+        Event time: ${eventTime},
+        Status code: ${status}, 
+        Whole url: ${url}
+        Error message: ${exception?.message}`;
     this.logger.error(error);
     writeToFile(error);
-
-    response.status(status).json({
+    const payload = {
       statusCode: status,
       timestamp: new Date().toISOString(),
       path: request.url,
-    });
+    };
+
+    if (USE_FASTIFY === 'true') {
+      response.status(status).send(payload);
+    } else {
+      response.status(status).json(payload);
+    }
   }
 }

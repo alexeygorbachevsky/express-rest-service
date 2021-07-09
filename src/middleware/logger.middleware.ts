@@ -1,5 +1,4 @@
 import { Injectable, NestMiddleware, Logger } from '@nestjs/common';
-import { Request, Response, NextFunction } from 'express';
 import { finished } from 'stream';
 
 const writeToFile = require('../common/writeToFile');
@@ -8,10 +7,11 @@ const writeToFile = require('../common/writeToFile');
 export class LoggerMiddleware implements NestMiddleware {
   private readonly logger = new Logger();
 
-  use(req: Request, res: Response, next: NextFunction) {
+  use(req, res, next) {
     const { url = '/', method, query = {}, body = {} } = req;
     const start = Date.now();
     const eventTime = new Date();
+
     next();
 
     finished(res, (error) => {

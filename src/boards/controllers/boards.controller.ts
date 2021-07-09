@@ -6,7 +6,6 @@ import {
   Put,
   Param,
   Delete,
-  HttpCode,
   UseFilters,
   UseGuards,
 } from '@nestjs/common';
@@ -42,7 +41,6 @@ export class BoardsController {
     return this.boardsService.update(id, newBoard);
   }
 
-  @HttpCode(204)
   @Delete(':id')
   async remove(@Param('id') id: string) {
     return this.boardsService.remove(id);
