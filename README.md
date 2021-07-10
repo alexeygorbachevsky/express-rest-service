@@ -78,8 +78,8 @@ npm run artillery:report
 
 ## Compare Performance (Fastify vs Express) 
 
-1. [Express test results](./performance-reports/express/express-artillery-report.html)
-2. [Fastify test results](./performance-reports/fastify/fastify-artillery-report.html)
+1. [Express test results](https://alexeygorbachevskiy.github.io/express-rest-service/express-artillery-report.html)
+2. [Fastify test results](https://alexeygorbachevskiy.github.io/express-rest-service/fastify-artillery-report.html)
 
 
 ## Development
