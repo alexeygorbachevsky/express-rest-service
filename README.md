@@ -64,6 +64,24 @@ To run only specific test suite with authorization (users, boards or tasks)
 npm run test:auth <suite name>
 ```
 
+To run load test scenarios
+
+```
+npm run test:load
+```
+
+Generate load test report after scenarios run
+
+```
+npm run artillery:report
+```
+
+## Compare Performance (Fastify vs Express) 
+
+1. [Express test results](./performance-reports/express/express-artillery-report.json.html)
+2. [Fastify test results](./performance-reports/fastify/fastify-artillery-report.json.html)
+
+
 ## Development
 
 If you're using VSCode, you can get a better developer experience from integration with [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) and [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) extensions.

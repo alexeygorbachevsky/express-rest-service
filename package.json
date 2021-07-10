@@ -13,7 +13,7 @@
     "lint": "eslint --ext .js,.ts --fix src",
     "test": "cross-env DEBUG=rs:* jest --testMatch \"<rootDir>/test/e2e/test/*.test.js\" --noStackTrace --runInBand",
     "test:auth": "cross-env DEBUG=rs:* TEST_MODE=auth jest --noStackTrace",
-    "test:load": "artillery run -o artillery-report.json ./artillery.yaml",
+    "test:load": "artillery run -o ./artillery-report.json ./artillery.yaml",
     "artillery:report": "artillery report ./artillery-report.json",
     "migration:generate": "ts-node --transpile-only ./node_modules/typeorm/cli.js --config src/common/ormconfig.ts migration:generate -n Migration",
     "migration:run": "ts-node --transpile-only ./node_modules/typeorm/cli.js --config src/common/ormconfig.ts migration:run"
