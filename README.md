@@ -78,4 +78,64 @@ npm run lint
 
 Press <kbd>F5</kbd> to debug.
 
+---
+
+## Tasks
+
+### Task 1. Caesar cipher CLI tool
+
+* Execute in: **private repository**
+* [Description](https://github.com/rolling-scopes-school/basic-nodejs-2021Q2/blob/master/descriptions/caesar-cipher-cli-tool.md)
+* [Cross-check criteria](https://github.com/rolling-scopes-school/basic-nodejs-2021Q2/blob/master/cross-check/caesar-cipher-cli-tool.md)
+
+### Task 2. Express REST service
+
+* Execute in: **template**
+* [Description](https://github.com/rolling-scopes-school/basic-nodejs-2021Q2/blob/master/descriptions/express-rest-service.md)
+* [Cross-check criteria](https://github.com/rolling-scopes-school/basic-nodejs-2021Q2/blob/master/cross-check/express-rest-service.md)
+
+### Task 3. Debug in Node.js
+
+* Execute in: **private repository**
+* [Description](https://github.com/rolling-scopes-school/basic-nodejs-2021Q2/blob/master/descriptions/debug-nodejs.md)
+* [Cross-check criteria](https://github.com/rolling-scopes-school/basic-nodejs-2021Q2/blob/master/cross-check/debug-nodejs.md)
+
+### Task 4. Typescript basics
+
+* Execute in: **template**
+* [Description](https://github.com/rolling-scopes-school/basic-nodejs-2021Q2/blob/master/descriptions/typescript-basics.md)
+* [Cross-check criteria](https://github.com/rolling-scopes-school/basic-nodejs-2021Q2/blob/master/cross-check/typescript-basics.md)
+
+### Task 5. Logging & Error Handling
+
+* Execute in: **template**
+* [Description](https://github.com/rolling-scopes-school/basic-nodejs-2021Q2/blob/master/descriptions/logging-error-handling.md)
+* [Cross-check criteria](https://github.com/rolling-scopes-school/basic-nodejs-2021Q2/blob/master/cross-check/logging-error-handling.md)
+
+### Task 6. Docker basics
+
+* Execute in: **template**
+* [Description](https://github.com/rolling-scopes-school/basic-nodejs-2021Q2/blob/master/descriptions/docker-basics.md)
+* [Cross-check criteria](https://github.com/rolling-scopes-school/basic-nodejs-2021Q2/blob/master/cross-check/docker-basics.md)
+
+### Task 7. PostgreSQL & Typeorm
+
+* Execute in: **template**
+* [Description](https://github.com/rolling-scopes-school/basic-nodejs-2021Q2/blob/master/descriptions/postgresql-typeorm.md)
+* [Cross-check criteria](https://github.com/rolling-scopes-school/basic-nodejs-2021Q2/blob/master/cross-check/postgresql-typeorm.md)
+
+### Task 8. Authentification & JWT
+
+* Execute in: **template**
+* [Description](https://github.com/rolling-scopes-school/basic-nodejs-2021Q2/blob/master/descriptions/authentification-jwt.md)
+* [Cross-check criteria](https://github.com/rolling-scopes-school/basic-nodejs-2021Q2/blob/master/cross-check/authentification-jwt.md)
+
+### Task 9. NestJS
+
+* Execute in: **template**
+* [Description](https://github.com/rolling-scopes-school/basic-nodejs-2021Q2/blob/master/descriptions/nestjs.md)
+* [Cross-check criteria](https://github.com/rolling-scopes-school/basic-nodejs-2021Q2/blob/master/cross-check/nestjs.md)
+
+---
+
 For more information, visit: https://code.visualstudio.com/docs/editor/debugging
