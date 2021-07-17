@@ -11,10 +11,12 @@
 git clone {repository URL}
 ```
 
-## Installing NPM modules
+## Installing
 
 ```
-npm install
+1. npm install (npm modules installing)
+2. Download pgAdmin (postrges database). You can change name of db and other credentials in .env file.
+3. Install and run Docker if you want run app from it.
 ```
 
 ## Running application
