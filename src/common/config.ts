@@ -17,4 +17,5 @@ module.exports = {
   POSTGRES_HOST: process.env['POSTGRES_HOST'],
   DOCKER_POSTGRES_HOST: process.env['DOCKER_POSTGRES_HOST'],
   JWT_SECRET: process.env['JWT_SECRET'],
+  USE_FASTIFY: process.env['USE_FASTIFY'],
 };
